@@ -27,8 +27,8 @@ class People(db.Model):
     gender = db.Column(db.String(250), unique=True, nullable=False)
     hair_color = db.Column(db.String(250), unique=True, nullable=False)
     height = db.Column(db.String(250), unique=True, nullable=False)
-    homeworld_id = db.Column(db.Integer, db.ForeignKey('planet.id'))
-    homeworld = db.relationship("Planet")
+    homeworld_id = db.Column(db.Integer, db.ForeignKey('planets.id'))
+    homeworld = db.relationship("Planets")
     mass = db.Column(db.String(250), unique=True, nullable=False)
     skin_color = db.Column(db.String(250), unique=True, nullable=False)
     created = db.Column(db.String(250), unique=True, nullable=False)
@@ -41,25 +41,26 @@ class People(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "eye_color": self.eye_color,
             # do not serialize the password, its a security breach
         }
 
-class Planet(db.Model):
+class Planets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    diameter = db.Column(db.String(120), unique=True, nullable=False)
-    rotation_period = db.Column(db.String(120), unique=True, nullable=False)
-    orbital_period = db.Column(db.String(120), unique=True, nullable=False)
-    gravity = db.Column(db.String(120), unique=True, nullable=False)
-    population = db.Column(db.String(120), unique=True, nullable=False)
-    climate = db.Column(db.String(120), unique=True, nullable=False)
-    terrain = db.Column(db.String(120), unique=True, nullable=False)
-    surface_water = db.Column(db.String(120), unique=True, nullable=False)
-    created = db.Column(db.String(120), unique=True, nullable=False)
-    edited = db.Column(db.String(120), unique=True, nullable=False)
+    diameter = db.Column(db.String(120), unique=False, nullable=False)
+    rotation_period = db.Column(db.String(120), unique=False, nullable=False)
+    orbital_period = db.Column(db.String(120), unique=False, nullable=False)
+    gravity = db.Column(db.String(120), unique=False, nullable=False)
+    population = db.Column(db.String(120), unique=False, nullable=False)
+    climate = db.Column(db.String(120), unique=False, nullable=False)
+    terrain = db.Column(db.String(120), unique=False, nullable=False)
+    surface_water = db.Column(db.String(120), unique=False, nullable=False)
+    created = db.Column(db.String(120), unique=False, nullable=False)
+    edited = db.Column(db.String(120), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<Planet %r>' % self.name
+        return '<Planets %r>' % self.name
 
     def serialize(self):
         return {

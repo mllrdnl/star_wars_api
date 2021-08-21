@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User
+from models import db, User, People
 #from models import Person
 
 app = Flask(__name__)
@@ -36,6 +36,23 @@ def handle_hello():
     response_body = {
         "msg": "Hello, this is your GET /user response "
     }
+
+    return jsonify(response_body), 200
+
+@app.route('/people', methods=['GET'])
+def people():
+    people_query = People.query.all()
+    response_body = [x.serialize() for x in people_query]
+    #this is list comprehenshion, similar to map but simpler
+    
+
+    return jsonify(response_body), 200
+
+@app.route('/people/<int:id>', methods=['GET'])
+def people_by_id(id):
+    people_query = People.query.filter(People.id == id).first()
+    response_body = people_query.serialize()
+    
 
     return jsonify(response_body), 200
 

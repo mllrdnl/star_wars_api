@@ -27,7 +27,7 @@ class People(db.Model):
     gender = db.Column(db.String(250), unique=True, nullable=False)
     hair_color = db.Column(db.String(250), unique=True, nullable=False)
     height = db.Column(db.String(250), unique=True, nullable=False)
-    homeworld_id = db.Column(db.Integer, db.ForeignKey('planets.id'))
+    homeworld_id = db.Column(db.Integer, db.ForeignKey("planets.id"))
     homeworld = db.relationship("Planets")
     mass = db.Column(db.String(250), unique=True, nullable=False)
     skin_color = db.Column(db.String(250), unique=True, nullable=False)

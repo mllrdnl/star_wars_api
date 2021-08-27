@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User, People
+from models import db, User, People, Planets, Vehicles
 #from models import Person
 
 app = Flask(__name__)
@@ -45,7 +45,6 @@ def people():
     response_body = [x.serialize() for x in people_query]
     #this is list comprehenshion, similar to map but simpler
     
-
     return jsonify(response_body), 200
 
 @app.route('/people/<int:id>', methods=['GET'])
@@ -53,7 +52,35 @@ def people_by_id(id):
     people_query = People.query.filter(People.id == id).first()
     response_body = people_query.serialize()
     
+    return jsonify(response_body), 200
 
+@app.route('/planets', methods=['GET'])
+def planets():
+    planets_query = Planets.query.all()
+    response_body = [x.serialize() for x in planets_query]
+
+    return jsonify(respons_body), 200
+
+@app.route('/planets/<int:id>', methods=['GET'])
+def planets_by_id(id):
+    planets_query = Planets.query.filter(Planets.id == id).first()
+    response_body = planets_query.serialize()
+    
+
+    return jsonify(response_body), 200
+
+@app.route('/vehicles', methods=['GET'])
+def vehicles():
+    vehicles_query = Vehicles.query.all()
+    response_body = [x.serialize() for x in vehicles_query]    
+
+    return jsonify(response_body), 200
+
+@app.route('/vehicles/<int:id>', methods=['GET'])
+def vehicles_by_id(id):
+    vehicles_query = Vehicles.query.filter(Vehicles.id == id).first()
+    response_body = vehicles_query.serialize()
+    
     return jsonify(response_body), 200
 
 # this only runs if `$ python src/main.py` is executed

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 33a2d2008df2
+Revision ID: b3ade6c424c9
 Revises: 
-Create Date: 2021-08-23 22:53:33.867441
+Create Date: 2021-08-27 21:39:35.783381
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '33a2d2008df2'
+revision = 'b3ade6c424c9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -60,32 +60,8 @@ def upgrade():
     sa.Column('created', sa.String(length=120), nullable=False),
     sa.Column('edited', sa.String(length=120), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('cargo_capacity'),
-    sa.UniqueConstraint('cargo_capacity'),
-    sa.UniqueConstraint('consumables'),
-    sa.UniqueConstraint('consumables'),
-    sa.UniqueConstraint('cost_in_credits'),
-    sa.UniqueConstraint('cost_in_credits'),
-    sa.UniqueConstraint('created'),
-    sa.UniqueConstraint('created'),
-    sa.UniqueConstraint('crew'),
-    sa.UniqueConstraint('crew'),
-    sa.UniqueConstraint('edited'),
-    sa.UniqueConstraint('edited'),
-    sa.UniqueConstraint('length'),
-    sa.UniqueConstraint('length'),
-    sa.UniqueConstraint('manufacturer'),
-    sa.UniqueConstraint('manufacturer'),
-    sa.UniqueConstraint('max_atmosphering_speed'),
-    sa.UniqueConstraint('max_atmosphering_speed'),
-    sa.UniqueConstraint('model'),
-    sa.UniqueConstraint('model'),
     sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('passengers'),
-    sa.UniqueConstraint('passengers'),
-    sa.UniqueConstraint('vehicle_class'),
-    sa.UniqueConstraint('vehicle_class')
+    sa.UniqueConstraint('name')
     )
     op.create_table('people',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -102,26 +78,8 @@ def upgrade():
     sa.Column('edited', sa.String(length=250), nullable=False),
     sa.ForeignKeyConstraint(['homeworld_id'], ['planets.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('birth_year'),
-    sa.UniqueConstraint('birth_year'),
-    sa.UniqueConstraint('created'),
-    sa.UniqueConstraint('created'),
-    sa.UniqueConstraint('edited'),
-    sa.UniqueConstraint('edited'),
-    sa.UniqueConstraint('eye_color'),
-    sa.UniqueConstraint('eye_color'),
-    sa.UniqueConstraint('gender'),
-    sa.UniqueConstraint('gender'),
-    sa.UniqueConstraint('hair_color'),
-    sa.UniqueConstraint('hair_color'),
-    sa.UniqueConstraint('height'),
-    sa.UniqueConstraint('height'),
-    sa.UniqueConstraint('mass'),
-    sa.UniqueConstraint('mass'),
     sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('skin_color'),
-    sa.UniqueConstraint('skin_color')
+    sa.UniqueConstraint('name')
     )
     # ### end Alembic commands ###
 
